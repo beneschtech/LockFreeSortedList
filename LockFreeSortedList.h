@@ -208,6 +208,7 @@ public:
         if (!p->next_ptr.compare_exchange_strong(n,n->next_ptr)) // Item changed
         {
           p = head.load(); // start again
+          continue;
         } else {
           found = true;
           m_size.fetch_sub(1);
